@@ -1,36 +1,27 @@
 cmake_minimum_required(VERSION 3.4)
+set(PROJECT_NAME examples)
+project(${PROJECT_NAME})
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-option(BUILD_EXAMPLES "Build examples" OFF)
-
-project(print)
-
-add_library(print STATIC ${CMAKE_CURRENT_SOURCE_DIR}/sources/print.cpp)
-
-target_include_directories(print PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:include>
+add_library(${PROJECT_NAME} STATIC 
+	formatter_ex_lib/formatter_ex.cpp
+	solver_lib/solver.cpp
 )
 
-if(BUILD_EXAMPLES)
-  file(GLOB EXAMPLE_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/examples/*.cpp")
-  foreach(EXAMPLE_SOURCE ${EXAMPLE_SOURCES})
-    get_filename_component(EXAMPLE_NAME ${EXAMPLE_SOURCE} NAME_WE)
-    add_executable(${EXAMPLE_NAME} ${EXAMPLE_SOURCE})
-    target_link_libraries(${EXAMPLE_NAME} print)
-    install(TARGETS ${EXAMPLE_NAME}
-      RUNTIME DESTINATION bin
-    )
-  endforeach(EXAMPLE_SOURCE ${EXAMPLE_SOURCES})
-endif()
-
-install(TARGETS print
-    EXPORT print-config
-    ARCHIVE DESTINATION lib
-    LIBRARY DESTINATION lib
+include_directories(
+	formatter_lib/_install/include
+	formatter_ex_lib/_install/include
+	solver_lib/_install/include
+)
+link_directories(
+	formatter_ex_lib/_install/lib
+	solver_lib/_install/lib
 )
 
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/ DESTINATION include)
-install(EXPORT print-config DESTINATION cmake)
+add_executable(formatter_ex hello_world_application/hello_world.cpp)
+add_executable(solver_ex solver_application/equation.cpp)
+
+target_link_libraries(formatter_ex ${PROJECT_NAME})
+target_link_libraries(solver_ex ${PROJECT_NAME})

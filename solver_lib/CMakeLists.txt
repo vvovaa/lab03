@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.4)
-set(PROJECT_NAME formatter)
+set(PROJECT_NAME solver)
 project(${PROJECT_NAME})
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_library(${PROJECT_NAME} STATIC ${CMAKE_CURRENT_SOURCE_DIR}/formatter.cpp)
+add_library(${PROJECT_NAME} STATIC ${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.cpp)
 target_include_directories(${PROJECT_NAME} PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
   $<INSTALL_INTERFACE:include>
@@ -17,5 +17,5 @@ install(TARGETS ${PROJECT_NAME}
     LIBRARY DESTINATION lib
 )
 
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/formatter.h DESTINATION include)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.h DESTINATION include)
 install(EXPORT formatter-config DESTINATION cmake)
