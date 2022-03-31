@@ -1,4 +1,4 @@
-!(build)[https://github.com/vvovaa/lab03/actions/workflows/build.yml/badge.svg]
+![build](https://github.com/vvovaa/lab03/actions/workflows/build.yml/badge.svg)
 
 ## Laboratory work III
 
