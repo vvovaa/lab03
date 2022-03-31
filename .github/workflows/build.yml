@@ -19,15 +19,16 @@ jobs:
         run: |
           cd formatter_lib
           cmake -H\. -B_build -DCMAKE_INSTALL_PREFIX=_install
-          cmake --build _build
+          cmake --build _build --target install
           
           cd ../formatter_ex_lib
           cmake -H\. -B_build -DCMAKE_INSTALL_PREFIX=_install
-          cmake --build _build
+          cmake --build _build --target install
          
           cd ../solver_lib
           cmake -H\. -B_build -DCMAKE_INSTALL_PREFIX=_install
-          cmake --build _build
+          cmake --build _build --target install
 
+          cd ..
           cmake -H. -B_build
           cmake --build _build
