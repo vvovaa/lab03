@@ -36,6 +36,6 @@ jobs:
       - name: Run examples
         shell: bash
         run: |
-          cd _build && ls -la
-          ./hello_world_ex.out
-          echo "1 10 20" | ./solver_ex.out
+          cd _build
+          ./hello_world_ex
+          echo "1 10 20" | ./solver_ex
