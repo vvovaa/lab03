@@ -30,5 +30,13 @@ jobs:
           cmake --build _build --target install
 
           cd ..
-          cmake -H. -B_build
+          cmake -H\. -B_build
           cmake --build _build
+
+      - name: Run examples
+        shell: bash
+        run: |
+          ls -la
+          cd _build/Debug
+          ./hello_world_ex.out
+          echo "1 10 20" | ./solver_ex.out

@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_library(${PROJECT_NAME} STATIC 
+	formatter_lib/formatter.cpp
 	formatter_ex_lib/formatter_ex.cpp
 	solver_lib/solver.cpp
 )
