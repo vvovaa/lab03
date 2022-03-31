@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_library(${PROJECT_NAME} STATIC 
-	formatter_lib/formatter.cpp
 	formatter_ex_lib/formatter_ex.cpp
 	solver_lib/solver.cpp
 )
@@ -21,8 +20,8 @@ link_directories(
 	solver_lib/_install/lib
 )
 
-add_executable(hello_world_ex hello_world_application/hello_world.cpp)
+add_executable(formatter_ex hello_world_application/hello_world.cpp)
 add_executable(solver_ex solver_application/equation.cpp)
 
-target_link_libraries(hello_world_ex ${PROJECT_NAME})
+target_link_libraries(formatter_ex ${PROJECT_NAME})
 target_link_libraries(solver_ex ${PROJECT_NAME})
